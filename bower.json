@@ -12,7 +12,9 @@
     "font-awesome": "~4.0.3",
     "angular-minicolors": "~0.0.4",
     "angular-bootstrap": "~0.10",
-    "angular-dialogs-service": "~4.1.0"
+    "angular-dialogs-service": "~4.1.0",
+    "animates-model": "Animates/model#~0.1.0",
+    "angular-media-timeline": "~0.2.0"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.16",

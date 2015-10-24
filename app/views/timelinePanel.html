@@ -1,5 +1,5 @@
   <div ng-controller="TimelinePanelCtrl" class="layout-panel timelinePanel">
-    <animates-timelines data="timelines" tick="tick" is-disable="disable"
+    <mt-timelines data="timelines" tick="tick" is-disable="disable"
       tick-change="onTimelineTickChange(tick);"
       point-move="onPointMove(timelineData, eventData, pointData, newTick)"
       multiplepointevent-selected="onMultiplePointEventSelected(timelineData, eventData)"
@@ -7,5 +7,5 @@
       event-durationchange="onEventDurationChange(timelineData, eventData, newDuration)"
       event-click="onEventClick(timelineData, eventData)"
       tick-ratio="tickRatio"
-    ></animates-timelines>
+    ></mt-timelines>
   </div>

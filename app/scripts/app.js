@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('animatesEditor', ['minicolors', 'animates.angular-timeline', 'ui.bootstrap','dialogs.main']);
+angular.module('animatesEditor', ['minicolors', 'mt.media-timeline', 'ui.bootstrap','dialogs.main']);

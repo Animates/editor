@@ -100,7 +100,6 @@ module.exports = function (grunt) {
       all: [
         'Gruntfile.js',
         '<%= yeoman.app %>/scripts/{,*/}*.js',
-        '!<%= yeoman.app %>/scripts/model.js',
         '!<%= yeoman.app %>/scripts/vendors/{,*/}*.js'
       ],
       build:{
@@ -113,7 +112,6 @@ module.exports = function (grunt) {
           src: [
             'Gruntfile.js',
             '<%= yeoman.app %>/scripts/{,*/}*.js',
-            '!<%= yeoman.app %>/scripts/model.js',
             '!<%= yeoman.app %>/scripts/vendors/{,*/}*.js'
           ]
         }
@@ -138,16 +136,7 @@ module.exports = function (grunt) {
           ]
         }]
       },
-      server: '.tmp',
-      model: '<%= yeoman.app %>/scripts/model.js',
-      timeline: {
-        files: [{
-          dot: true,
-          src: [
-            '<%= yeoman.app %>/bower_components/timeline/'
-          ]
-        }]
-      }
+      server: '.tmp'
     },
 
     // Add vendor prefixed styles
@@ -339,17 +328,6 @@ module.exports = function (grunt) {
         dest: '.tmp/styles/',
         src: '{,*/}*.css'
       },
-      model: {
-        expand : true,
-        cwd: '../model/build/output',
-        src: 'model.js',
-        dest : '<%= yeoman.app %>/scripts/'
-      },
-      timeline: {
-        expand: true,
-        src: '../timeline/dist/**/*',
-        dest : '<%= yeoman.app %>/bower_components/timeline/'
-      },
       build: {
         files: [{
           expand: true,
@@ -413,53 +391,7 @@ module.exports = function (grunt) {
     }
   });
 
-  grunt.registerTask('run-model-grunt', function () {
-    var done = this.async();
-    grunt.util.spawn({
-      grunt: true,
-      args: ['package'],
-      opts: {
-          cwd: '../model'
-        }
-      }, function () {
-        done();
-      });
-  });
-
-  grunt.registerTask('run-timeline-grunt', function () {
-    var done = this.async();
-    grunt.util.spawn({
-      grunt: true,
-      args: ['package'],
-      opts: {
-          cwd: '../timeline'
-        }
-      }, function () {
-        done();
-      });
-  });
-
-  grunt.registerTask('install-dep', function (target) {
-    if (target === 'new') {
-      return grunt.task.run([
-        'bower-install',
-        'clean:timeline',
-        'run-timeline-grunt',
-        'copy:timeline',
-        'clean:model',
-        'run-model-grunt',
-        'copy:model'
-      ]);
-    } else {
-      return grunt.task.run([
-        'bower-install',
-        'clean:timeline',
-        'copy:timeline',
-        'clean:model',
-        'copy:model'
-      ]);
-    }
-  });
+  grunt.registerTask('install-dep', ['bower-install']);
 
   grunt.registerTask('serve', function (target) {
     if (target === 'dist') {
@@ -475,11 +407,6 @@ module.exports = function (grunt) {
       'connect:livereload',
       'watch'
     ]);
-  });
-
-  grunt.registerTask('server', function () {
-    grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
-    grunt.task.run(['serve']);
   });
 
   grunt.registerTask('test', [
